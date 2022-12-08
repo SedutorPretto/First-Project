@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
-# Снятие флага работы в автоматическом режиме (не особо помогает в данном случае)
+
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
 options.add_experimental_option('useAutomationExtension', False)
@@ -14,11 +14,11 @@ options.add_experimental_option('useAutomationExtension', False)
 s = Service("C:\\Users\\User\\Desktop\\Parcer\\Selenium\\chromedriver.exe")
 driver = webdriver.Chrome(service=s, options=options)
 
-# Создаем словарь из названий и ссылок на 250 лучших фильмовб записываем в json файл
+
 try:
     films_urls = {}
     driver.get('https://www.kinopoisk.ru/')
-    if 'utilityfocus' in driver.page_source: # Проверка на капчу решается в ручном режиме
+    if 'utilityfocus' in driver.page_source: # captcha manual mode
         time.sleep(60)
     driver.implicitly_wait(6)
     driver.get('https://www.kinopoisk.ru/lists/categories/movies/1/')
